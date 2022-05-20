@@ -1,24 +1,26 @@
+const Course = ({ course }) =>
+  <>
+    <Header course={course.name} />
+    <Content parts={course.parts} />
+    <Total sum={course.parts[0].exercises + course.parts[1].exercises + course.parts[2].exercises} />
+  </>
+
 const Header = ({ course }) => <h1>{course}</h1>
 
-const Total = ({ sum }) => <p>Number of exercises {sum}</p>
+const Total = ({ sum }) => <p><b>Number of exercises {sum}</b></p>
 
-const Part = ({ part }) => 
+const Part = ({ part }) =>
   <p>
     {part.name} {part.exercises}
   </p>
 
-const Content = ({ parts }) => 
-  <>
-    <Part
-      part={parts[0]} 
-    />
-    <Part
-      part={parts[1]} 
-    />
-    <Part
-      part={parts[2]} 
-    />      
-  </>
+const Content = ({ parts }) =>
+
+  <div>
+    {parts.map((part, i) =>
+      <Part key={i} part={part} />
+    )}
+  </div>
 
 const App = () => {
   const course = {
@@ -46,9 +48,6 @@ const App = () => {
   return (
     <div>
       <Course course={course} />
-      <Header course={course} />
-      <Content parts={parts} />
-      <Total sum={parts[0].exercises + parts[1].exercises + parts[2].exercises} />
     </div>
   )
 }
