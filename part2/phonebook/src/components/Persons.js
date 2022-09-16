@@ -1,3 +1,4 @@
+import React from 'react';
 import Person from './Person.js'
 
 const Persons = ({ persons, allPersons }) => {

@@ -1,7 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios'
 import Persons from './components/Persons.js';
 import Filter from './components/Filter.js';
 import Addnew from './components/Addnew.js';
+import React from 'react';
+
 
 const App = () => {
   const [persons, setPersons] = useState([])
@@ -25,17 +28,13 @@ const App = () => {
       id: newId
     }
 
-    const testperson = allPersons.filter((testperson) =>
-      testperson.name === personObj.name
-    )
-
+    setNewName('');
     if (testperson.length !== 0) {
-      alert(newName + ' is already added in the phonebook.')
-      setNewId(newId -= 1)
-    } else {
-      setAllPersons(allPersons.concat(personObj))
-    }
-    setNewName('')
+        alert(newName + ' is already added in the phonebook.')
+        setNewId(newId -= 1)
+      } else {
+        setAllPersons(allPersons.concat(personObj))
+      }
     setNewNumber('')
   }
 
@@ -64,7 +63,7 @@ const App = () => {
       <h2>
         add new
       </h2>
-      <Addnew addName={addName} newName={newName} handleNameChange={handleNameChange} newNumber={newNumber} handleNumberChange={handleNumberChange}/>
+      <Addnew addName={addName} newName={newName} handleNameChange={handleNameChange} newNumber={newNumber} handleNumberChange={handleNumberChange} />
       <h2>Numbers</h2>
       <Persons persons={persons} allPersons={allPersons}></Persons>
     </div>
